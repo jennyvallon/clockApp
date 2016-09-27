@@ -39,9 +39,4 @@ Then figured out how to lay out the code so that it can manage the setInterval I
 <br>
 Did it over a few hours.<br>
 
-UPDATE: removed the properties from the prototype and added them to the constructor 
-in case I wanted to have multiple instances of Clock. I wanted the properties to point to 
-the individual instance and not have all instances point to the same single set properties<<
-the clocks would be wonky if I did that. :)
-
 

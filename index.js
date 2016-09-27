@@ -1,14 +1,12 @@
-function Clock(){
-    this.state={};
-}
+function Clock(){}
 
 Clock.prototype.getCurrentState=function(){
     return this.state;
 };
 
+Clock.prototype.state={};
 
-
-Clock.prototype.init=function(){//set initial values
+Clock.prototype.init=function(){
     var clock=this.getCurrentState();
     clock.seconds=0;
     clock.minutes=0;
@@ -17,7 +15,7 @@ Clock.prototype.init=function(){//set initial values
     this.timerOn();
 };
 
-Clock.prototype.timerOn=function(){//set initial values
+Clock.prototype.timerOn=function(){
     var clock=this.getCurrentState();
     clock.secId=setInterval(function(){ Clock.prototype.seconds();}, 1000);
     clock.minId=setInterval(function(){ Clock.prototype.minutes();}, 60000);
