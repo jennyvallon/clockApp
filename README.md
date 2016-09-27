@@ -40,3 +40,5 @@ Then figured out how to lay out the code so that it can manage the setInterval I
 Did it over a few hours.<br>
 
 
+TO-DO: Remove moving parts (Clock.state) from prototype and add to constructor so that all instances of Clock are not acting on the same
+same instance of literal values.
