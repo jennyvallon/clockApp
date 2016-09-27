@@ -4,8 +4,6 @@ Clock.prototype.getCurrentState=function(){
     return this.state;
 };
 
-
-
 Clock.prototype.state={};
 
 Clock.prototype.init=function(){
