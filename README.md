@@ -32,28 +32,28 @@ During the exercise here were my issues:<br>
 2.Showing leading zeros in values less than 10::<i>was easy to solve</i><br>
 3.Adding properties when using prototype==>solution:add properties directly to constructor<br>
 4.Biggest headache was use of setInterval & clearInterval<br>
-I setInterval does not accept this as a parameter so this is set to the Window Object.
-that is not what I wanted because it made my seconds method inaccessible within the setInterval.
-I needed to change the context of <<this>> within the setInterval. To do this I 
-had to change the setInterval native code to non-native code so that I would be able to
-use the call function on setInterval, allowing me to set the context of this. I change
-the native code dynamically when the document is ready. <br><br>
-<i>setInterval.call(this, this.seconds, 1000);</i> <strong>line25</strong>
-Starting from the outside going in using the now-available call method I set the 
-context of this to the Clock instance which is calling the setInterval function(the second and third params are parameters that will be passed to the setInterval function as vCallback and nDelay respectively. 
+<i>setInterval</i> does not accept <strong>this</strong> as a parameter so <strong>this</strong> is pointing to the Window Object.
+that is not what I wanted because it made my <i>seconds</i> method inaccessible within the <i>setInterval</i>.
+I needed to change the context of <strong>this</strong> within the <i>setInterval</i>. To do this I 
+had to change the <i>setInterval</i> <strong>native code</strong> to <strong>non-native code</strong> so that I would be able to
+use the <i>call</i> method on <i>setInterval</i>, allowing me to set the context of <strong>this</strong>. I change
+the <strong>native code</strong> dynamically when the document is ready. <br><br>
+<i>setInterval.call(this, this.seconds, 1000);</i> <strong>line25</strong><br>
+Starting from the outside going in using the now-available <i>call</i> method I set the 
+context of <strong>this</strong> to the <i>Clock</i> instance which is calling the <i>setInterval</i> function(the second and third params are parameters that will be passed to the <i>setInterval</i> function as <i>vCallback</i> and <i>nDelay</i> respectively. 
 <Br><br>
 <i>var __nativeSI__=window.setInterval;<br>
-    
-window.setInterval = function (vCallback, nDelay) {
-    var oThis = this; 
-    var aArgs = Array.prototype.slice.call(arguments, 2);//turn arg object into array
-    return __nativeSI__(vCallback instanceof Function ? function () {
-        vCallback.apply(oThis, aArgs);
-    } : vCallback, nDelay);
-};</i>
-The this the oThis variable is referring to is the this context passed by the call method. The aArgs variable turns the argument passed to the setInterval function object into
+<br>
+window.setInterval = function (vCallback, nDelay) {<br>
+&nbsp;&nbsp;&nbsp;    var oThis = this; <br>
+&nbsp;&nbsp;&nbsp;    var aArgs = Array.prototype.slice.call(arguments, 2);<br>
+&nbsp;&nbsp;&nbsp;    return __nativeSI__(vCallback instanceof Function ? function () {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        vCallback.apply(oThis, aArgs);<br>
+&nbsp;&nbsp;&nbsp;    } : vCallback, nDelay);<Br>
+};</i><Br>
+The <strong>this</strong> the <i>oThis</i> variable is referring to is the <strong>this</strong> context passed by the <i>call</i> method. The <i>aArgs</i> variable turns the arguments passed to the <i>setInterval</i> function  into
 an array to be consumed by the callback later on. <Br>
-In the return if the callBack passed to the setInterval is a function then it will recieve the new this context(oThis) and it's arguements(aArgs) from the apply method, otherwise the setInterval function will behave normally.
+In the <strong>return</strong if the callBack passed to the <i>setInterval</i> is a function then it will receive the new <strong>this</strong> context(<i>oThis</i>) and it's arguements(<i>aArgs</i>) from the <i>apply</i> method, otherwise the <i>setInterval</i> function will behave normally.
 
 Did it over a few hours.<br>
 
