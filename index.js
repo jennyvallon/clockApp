@@ -1,10 +1,11 @@
-function Clock(){}
+function Clock(){
+    this.state=new Object;
+}
 
 Clock.prototype.getCurrentState=function(){
     return this.state;
 };
 
-Clock.prototype.state={};
 
 Clock.prototype.init=function(){
     var clock=this.getCurrentState();
@@ -12,14 +13,19 @@ Clock.prototype.init=function(){
     clock.minutes=0;
     clock.hours=0;
     clock.pause=true;
+    this.update("seconds");
+    this.update("minutes");
+    this.update("hours");
     this.timerOn();
 };
 
 Clock.prototype.timerOn=function(){
     var clock=this.getCurrentState();
-    clock.secId=setInterval(function(){ Clock.prototype.seconds();}, 1000);
-    clock.minId=setInterval(function(){ Clock.prototype.minutes();}, 60000);
-    clock.hrId=setInterval(function(){ Clock.prototype.hours();}, 360000);
+    var that=this;
+    clock.secId=setInterval.call(this, this.seconds, 1000);
+    clock.minId=setInterval.call(this, this.minutes, 60000);
+    clock.hrId=setInterval.call(this, this.hours, 3600000);
+    clock.pause=false;
 };
 
 Clock.prototype.increment=function(unit){
@@ -43,6 +49,7 @@ Clock.prototype.start=function(){
 Clock.prototype.reset=function(){
     this.pause();
     this.init();
+    
 };
 
 Clock.prototype.pause=function(){
@@ -86,6 +93,17 @@ Clock.prototype.update=function(unit){
 var clock=new Clock();
 
 document.addEventListener("DOMContentLoaded", function() {
+
+    var __nativeSI__=window.setInterval;
+    
+    window.setInterval = function (vCallback, nDelay) {
+        var oThis = this; 
+        var aArgs = Array.prototype.slice.call(arguments, 2);//turn arg object into array
+        return __nativeSI__(vCallback instanceof Function ? function () {
+            vCallback.apply(oThis, aArgs);
+        } : vCallback, nDelay);
+    };
+    
     document.getElementById("start").addEventListener("click", function(){clock.start();});
     document.getElementById("pause").addEventListener("click", function(){clock.pause();});
     document.getElementById("resume").addEventListener("click", function(){clock.resume();});
