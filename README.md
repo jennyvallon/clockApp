@@ -51,9 +51,9 @@ window.setInterval = function (vCallback, nDelay) {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        vCallback.apply(oThis, aArgs);<br>
 &nbsp;&nbsp;&nbsp;    } : vCallback, nDelay);<Br>
 };</i><Br>
-The <strong>this</strong> the <i>oThis</i> variable is referring to is the <strong>this</strong> context passed by the <i>call</i> method. The <i>aArgs</i> variable turns the arguments passed to the <i>setInterval</i> function  into
+The <strong>this</strong> the <i>oThis</i> variable is referring to is the <strong>this</strong> context passed by the <i>call</i> method. The <i>aArgs</i> variable take the arguments of index 2 and higher passed to the <i>setInterval.call()</i>  into
 an array to be consumed by the callback later on. <Br>
-In the <strong>return</strong if the callBack passed to the <i>setInterval</i> is a function then it will receive the new <strong>this</strong> context(<i>oThis</i>) and it's arguements(<i>aArgs</i>) from the <i>apply</i> method, otherwise the <i>setInterval</i> function will behave normally.
+If the first argument passed to the <i>setInterval</i> is a function then the will be called with <i>apply()</i> receive the new <strong>this</strong> context(<i>oThis</i>) and it's parameters(<i>aArgs</i>), otherwise the <i>setInterval</i> function will behave normally.
 
 Did it over a few hours.<br>
 
