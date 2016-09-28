@@ -1,0 +1,15 @@
+/*typography*/
+
+@font-face {
+    font-family: Digital;
+    src: url(digital-7monoitalic.ttf);
+}
+
+body{
+    font:300px Digital;
+    text-align: center;
+    line-height: 0px;
+    color: chartreuse;
+    text-shadow: 0px 0px 10px lawngreen;
+    background-color: black;  
+}
