@@ -6,13 +6,13 @@ This exercise was awesome!<br>
 And by awesome I mean deceptively simple.<br> 
 <br>
 <br>
-I completed it by creating a Clock constructor.<br> 
-The Clock class manages the seconds, minutes and hours values and feeds them to the DOM dynamically using the update method<br>
-as well as a pause state which is a boolean. These are kept in a state object whose default value is an empty object. To prevent the <br>
+I completed it by creating a Clock prototype.<br> 
+The Clock constructor provides the instance with a state property that manages the seconds, minutes, hours values and a pause property which is a boolean.. They are updated in the DOM dynamically using the <i>update</i> method<br>
+The state object's default value is an empty object<br>
 <br>
-The clock is initialized by the start button which populates the state object with it's initial values and calls the timerOn function that instantiates the setIntervals that move the clock forward.<br>
+The clock instance is initialized by the start button which populates the state object with it's initial values and calls the <i>timerOn</i> function that instantiates the setIntervals that move the clock forward.<br>
 <br>
-Pause uses clearInterval. Instances of setInterval are held in the state object.<Br>
+The pause button uses clearInterval. Instances of setInterval are held in the state object.<Br>
 <br>
 Resume reuses the timerOn function which serves as the setIntervals init function.<br>
 <br>
