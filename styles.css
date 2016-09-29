@@ -13,3 +13,13 @@ body{
     text-shadow: 0px 0px 10px lawngreen;
     background-color: black;  
 }
+
+
+a{
+    font-size:50px;
+    text-shadow: 0px 0px 100px lawngreen;
+}
+
+a:hover{
+    text-shadow: 0px 0px 10px lawngreen;
+}
